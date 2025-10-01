@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API documentation for Contacts & Users
 servers:
-  - url: http://localhost:5050
+  - url: https://my-contacts-app-api.onrender.com
 
 paths:
   /contact/add:
@@ -146,8 +146,8 @@ paths:
               type: object
               properties:
                 userName:
-                    type: string
-                    example: "user123"
+                  type: string
+                  example: "user123"
                 email:
                   type: string
                   example: "user@example.com"
