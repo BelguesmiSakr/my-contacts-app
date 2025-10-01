@@ -5,6 +5,7 @@ info:
   description: API documentation for Contacts & Users
 servers:
   - url: https://my-contacts-app-api.onrender.com
+  - url: http://localhost:5050
 
 paths:
   /contact/add:
