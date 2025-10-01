@@ -5,17 +5,11 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 const AddContact = ({ user_id, setContacts, setNotification }) => {
   const [message, setMessage] = useState("");
   const [contact, setContact] = useState({
-    user_id: user_id,
+    user_id,
     firstName: "",
     lastName: "",
     phoneNumber: "",
   });
-
-  // useEffect(() => {
-  //   if (user_id) {
-  //     setContact((prev) => ({ ...prev, user_id }));
-  //   }
-  // }, [user_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,7 +34,6 @@ const AddContact = ({ user_id, setContacts, setNotification }) => {
           firstName: "",
           lastName: "",
           phoneNumber: "",
-          _id: "",
         }));
       }
     } catch (error) {
