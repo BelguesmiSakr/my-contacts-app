@@ -26,6 +26,7 @@ const Login = () => {
         if (responce.status === 201) {
           setRegisterFlag(false);
           setLoading(false);
+          setMessageColor("text-green-500");
           setEmail("");
           setUserName("");
           setPassword("");
