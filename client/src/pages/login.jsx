@@ -129,6 +129,7 @@ const Login = () => {
                   className="w-full cursor-pointer bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   {registerFlag ? "Create an account" : "Login"}
+                  {loading && <AiOutlineLoading3Quarters />}
                 </button>
                 {message && <p className="mt-2 text-sm">{message}</p>}
                 <p className="text-sm font-light">
@@ -138,7 +139,6 @@ const Login = () => {
                     onClick={() => setRegisterFlag(!registerFlag)}
                   >
                     {registerFlag ? " Login here" : "Register here"}
-                    {loading && <AiOutlineLoading3Quarters />}
                   </span>
                 </p>
               </form>
