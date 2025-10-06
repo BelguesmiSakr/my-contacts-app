@@ -126,10 +126,12 @@ const Login = () => {
 
                 <button
                   type="submit"
-                  className="w-full cursor-pointer bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="flex justify-center items-center gap-4 w-full cursor-pointer bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   {registerFlag ? "Create an account" : "Login"}
-                  {loading && <AiOutlineLoading3Quarters />}
+                  {loading && (
+                    <AiOutlineLoading3Quarters className="animate-spin text-3xl text-blue-500" />
+                  )}
                 </button>
                 {message && <p className="mt-2 text-sm">{message}</p>}
                 <p className="text-sm font-light">
