@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const AddContact = ({ user_id, setContacts, setNotification }) => {
   const [contact, setContact] = useState({
-    user_id,
     firstName: "",
     lastName: "",
     phoneNumber: "",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => setContact((prev) => ({ user_id, ...prev })), [user_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
