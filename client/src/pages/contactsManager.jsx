@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import NavBare from "../components/navBare";
@@ -13,7 +13,7 @@ const ContactManager = () => {
   const [notification, setNotification] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
       try {
