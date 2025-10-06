@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const AddContact = ({ user_id, setContacts, setNotification }) => {
   const [contact, setContact] = useState({
-    user_id,
     firstName: "",
     lastName: "",
     phoneNumber: "",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setContact((prev) => ({ ...prev, user_id }));
+  }, [user_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +27,7 @@ const AddContact = ({ user_id, setContacts, setNotification }) => {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log(contact);
       const responce = await axios.post(`${baseURL}/contact/add`, contact);
       if (responce.status === 201) {
         setNotification("contact added succefully");
