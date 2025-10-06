@@ -29,6 +29,7 @@ const Login = () => {
           setPassword("");
         }
       } catch (error) {
+        setLoading(false);
         if (error.response) {
           setMessage(error.response.data.message || "Something went wrong");
         } else if (error.request) {
@@ -46,6 +47,7 @@ const Login = () => {
           navigate("/contact");
         }
       } catch (error) {
+        setLoading(false);
         if (error.response) {
           setMessage(error.response.data.message || "Something went wrong");
         } else if (error.request) {
@@ -130,10 +132,12 @@ const Login = () => {
                 >
                   {registerFlag ? "Create an account" : "Login"}
                   {loading && (
-                    <AiOutlineLoading3Quarters className="animate-spin text-3xl text-blue-500" />
+                    <AiOutlineLoading3Quarters className="animate-spin text-2xl" />
                   )}
                 </button>
-                {message && <p className="mt-2 text-sm">{message}</p>}
+                {message && (
+                  <p className="mt-2 text-sm text-red-600">{message}</p>
+                )}
                 <p className="text-sm font-light">
                   {registerFlag && "Already have an account?"}{" "}
                   <span
