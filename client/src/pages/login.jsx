@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [messageColor, setMessageColor] = useState("text-red-500");
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +25,8 @@ const Login = () => {
 
         if (responce.status === 201) {
           setRegisterFlag(false);
+          setLoading(false);
+          setMessageColor("text-green-500");
           setEmail("");
           setUserName("");
           setPassword("");
@@ -82,7 +85,7 @@ const Login = () => {
                       name="name"
                       id="name"
                       placeholder="My name"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required={true}
                       value={userName}
                       onChange={(e) => setUserName(e.target.value)}
@@ -135,9 +138,7 @@ const Login = () => {
                     <AiOutlineLoading3Quarters className="animate-spin text-2xl" />
                   )}
                 </button>
-                {message && (
-                  <p className="mt-2 text-sm text-red-600">{message}</p>
-                )}
+                {message && <p className={`mt-2 ${messageColor}`}>{message}</p>}
                 <p className="text-sm font-light">
                   {registerFlag && "Already have an account?"}{" "}
                   <span
