@@ -9,13 +9,12 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 
 const ContactCard = ({ contact, setContacts, setNotification }) => {
   const [update, setUpdate] = useState(false);
-  const [message, setMessage] = useState("");
   const [currenContact, setCurrenContact] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: "",
   });
-  
+
   useEffect(
     () =>
       setCurrenContact({
@@ -56,11 +55,11 @@ const ContactCard = ({ contact, setContacts, setNotification }) => {
       }
     } catch (error) {
       if (error.response) {
-        setMessage(error.response.data.message || "Something went wrong");
+        setNotification(error.response.data.message || "Something went wrong");
       } else if (error.request) {
-        setMessage("No response from server");
+        setNotification("No response from server");
       } else {
-        setMessage(error.message);
+        setNotification(error.message);
       }
     }
   };
@@ -74,11 +73,11 @@ const ContactCard = ({ contact, setContacts, setNotification }) => {
       }
     } catch (error) {
       if (error.response) {
-        setMessage(error.response.data.message || "Something went wrong");
+        setNotification(error.response.data.message || "Something went wrong");
       } else if (error.request) {
-        setMessage("No response from server");
+        setNotification("No response from server");
       } else {
-        setMessage(error.message);
+        setNotification(error.message);
       }
     }
   };

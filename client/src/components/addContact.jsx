@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const baseURL = import.meta.env.VITE_BASE_URL;
 
 const AddContact = ({ user_id, setContacts, setNotification }) => {
-  const [message, setMessage] = useState("");
   const [contact, setContact] = useState({
     user_id,
     firstName: "",
     lastName: "",
     phoneNumber: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +22,12 @@ const AddContact = ({ user_id, setContacts, setNotification }) => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const responce = await axios.post(`${baseURL}/contact/add`, contact);
       if (responce.status === 201) {
         setNotification("contact added succefully");
+        setLoading(false);
         setContacts((prev) => [
           { ...contact, _id: responce.data._id },
           ...prev,
@@ -37,12 +40,13 @@ const AddContact = ({ user_id, setContacts, setNotification }) => {
         }));
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
-        setMessage(error.response.data.message || "Something went wrong");
+        setNotification(error.response.data.message || "Something went wrong");
       } else if (error.request) {
-        setMessage("No response from server");
+        setNotification("No response from server");
       } else {
-        setMessage(error.message);
+        setNotification(error.message);
       }
     }
   };
@@ -110,7 +114,11 @@ const AddContact = ({ user_id, setContacts, setNotification }) => {
         type="submit"
         className="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       >
-        Add Contact
+        {loading ? (
+          <AiOutlineLoading3Quarters className="animate-spin text-3xl text-white" />
+        ) : (
+          "Add Contact"
+        )}
       </button>
     </form>
   );
