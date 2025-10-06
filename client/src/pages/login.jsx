@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const baseURL = import.meta.env.VITE_BASE_URL;
-
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,9 +11,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (registerFlag) {
       try {
         const user = { userName, email, password };
@@ -136,6 +138,7 @@ const Login = () => {
                     onClick={() => setRegisterFlag(!registerFlag)}
                   >
                     {registerFlag ? " Login here" : "Register here"}
+                    {loading && <AiOutlineLoading3Quarters />}
                   </span>
                 </p>
               </form>
