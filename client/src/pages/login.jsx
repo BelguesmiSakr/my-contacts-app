@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [messageColor, setMessageColor] = useState("text-red-500");
+  const [messageColor, setMessageColor] = useState("text-green-500");
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -26,13 +26,13 @@ const Login = () => {
         if (responce.status === 201) {
           setRegisterFlag(false);
           setLoading(false);
-          setMessageColor("text-green-500");
           setEmail("");
           setUserName("");
           setPassword("");
         }
       } catch (error) {
         setLoading(false);
+        setMessageColor("text-red-500");
         if (error.response) {
           setMessage(error.response.data.message || "Something went wrong");
         } else if (error.request) {
@@ -51,6 +51,7 @@ const Login = () => {
         }
       } catch (error) {
         setLoading(false);
+        setMessageColor("text-red-500");
         if (error.response) {
           setMessage(error.response.data.message || "Something went wrong");
         } else if (error.request) {
