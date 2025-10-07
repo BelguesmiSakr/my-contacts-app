@@ -65,9 +65,15 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-[url('/composition-with-telephone.jpg')] bg-cover bg-center">
+    <div className="h-screen bg-[url('/composition-with-telephone.jpg')] bg-cover bg-center flex flex-col justify-center items-center gap-1">
+      <div
+        onClick={() => navigate("/")}
+        className="text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 bg-clip-text text-transparent drop-shadow-lg cursor-pointer"
+      >
+        My Contacts
+      </div>
       <section className="">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="flex flex-col items-center justify-center px-6 py-4 w-100">
           <div className="w-full rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight">
